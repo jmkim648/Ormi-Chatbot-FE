@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="ko-KR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Ormi3-Blog</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@200;300;400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+          theme: {
+            extend: {
+              fontFamily: {
+                'sans' : ['Roboto Condensed', 'sans-serif']
+              }
+            }
+          }
+        }
+    </script>
+</head>
+<body class="font-sans font-normal antialiased bg-white text-gray-900">
+    <!-- header -->
+    <div id="header"></div>
+    <!-- /header -->
+    <script>
+    const slideshow = () => ({
+        current: 0,
+        images: [
+        'https://c.pxhere.com/photos/c5/9b/work_computer_laptop_technology_coding-7742.jpg!d',
+        'https://c.pxhere.com/photos/ff/28/CC0_CC0_Photos_Coffee_Computer_Free_Images_Free_Photos_High_Resolution_Mac-1618227.jpg!d',
+        'https://c.pxhere.com/photos/3b/90/code_coding_web_development_web_developer_web_development_technology_programming_code-1066093.jpg!d'
+        ],
+        init() {
+            window.setInterval(() => {
+                this.current = this.current < this.images.length - 1 ? this.current + 1 : 0
+            }, 4000);
+        }
+    });
+    </script>
+    <div x-data="slideshow()" x-init="init()" class="-mt-32 relative w-full bg-black pt-64 pb-24">
+        <div class="relative z-10 text-center text-white text-center mx-auto max-w-xl">
+            <h1 class="text-3xl lg:text-7xl mb-6 font-bold uppercase italic">Variable Recommander</h1>
+            <p class="text-lg mb-4">언어와 컨벤션에 따른 변수명, 함수명을 챗봇에게 편하게 물어보세요!</p>
+            <a href="chat_list.html" class="inline-block rounded-full border-2 border-white text-lg px-8 py-3 hover:bg-white hover:text-gray-900">Ask to Chatbot</a>
+        </div>
+        <img x-bind:src="images[current]" class="w-full h-full absolute inset-0 object-cover opacity-75">
+    </div>
+    <div class="container mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 py-24">
+        <div class="lg:px-32 lg:py-32 flex items-center justify-center">
+            <div>
+                <h2 class="text-5xl mb-6 font-bold uppercase italic">게시판</h2>
+                <p class="text-lg">게시판에서 공지사항/질문 글을 확인하세요</p>
+                <a href="board_list.html" class="mt-8 inline-block rounded-full border-2 border-gray-900 text-lg px-8 py-3 hover:bg-black hover:text-white">To board</a>
+            </div>
+        </div>
+        <div class="hidden lg:grid relative grid-cols-2">
+            <div class="pt-24">
+                <div class="relative w-full h-full">
+                    <img src="https://c.pxhere.com/images/41/89/db5bad17f91dd0186f117bd56b5b-1445355.jpg!d" class="absolute inset-0 w-full h-full object-cover -mt-6 z-10">
+                </div>
+            </div>
+            <div class="relative">
+                <img src="https://c.pxhere.com/photos/3b/90/code_coding_web_development_web_developer_web_development_technology_programming_code-1066093.jpg!d" class="absolute inset-0 w-full h-full object-cover -ml-12">
+            </div>
+        </div>
+    </div>
+    <!-- footer -->
+    <div id="footer"></div>
+    <!-- /footer -->
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.8.2/dist/alpine.min.js" defer="defer"></script>
+    <script src="./js/header.js"></script>
+    <script src="./js/footer.js"></script>
+</body>
+</html>

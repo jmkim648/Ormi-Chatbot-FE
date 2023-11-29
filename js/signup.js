@@ -1,0 +1,5 @@
+const $button_signup = document.getElementById("button_signup")
+const $input_email = document.getElementById("input_email")
+const $input_password = document.getElementById("input_password")
+const $input_password2 = document.getElementById("input_password2")
+const $input_nickname = document.getElementById("input_nickname")
