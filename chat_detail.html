@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Ormi3-Blog</title>
+    <title>Ormi3-Chatbot</title>
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@200;300;400;600;700&display=swap"
         rel="stylesheet">
@@ -20,15 +20,24 @@
             }
         }
     </script>
+    <style>
+        .user {
+            text-align: right;
+        }
+
+        .chatbot {
+            text-align: left;
+        }
+    </style>
 </head>
 
 <body class="font-sans font-normal antialiased bg-white text-gray-900">
     <!-- header -->
     <div id="header"></div>
     <!-- /header -->
-    
+
     <div class="grid place-items-center mt-8">
-        <div class="bg-white w-5/12 shadow overflow-hidden sm:rounded-lg">
+        <div class="bg-white w-9/12 shadow overflow-hidden sm:rounded-lg">
             <div class="px-4 py-5 sm:px-6">
                 <h3 class="text-lg leading-6 font-medium text-gray-900">
                     Board details
@@ -38,53 +47,48 @@
                 <dl>
                     <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-6 sm:gap-4 sm:px-6">
                         <dt class="text-sm font-medium text-gray-500">
-                            Title
+                            Language
                         </dt>
-                        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-5">
-                            변수명, 함수명 추천 챗봇입니다
+                        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-5" id="content_language">
+                            C++
                         </dd>
                     </div>
                     <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-6 sm:gap-4 sm:px-6">
                         <dt class="text-sm font-medium text-gray-500">
-                            Writer
+                            Convention
                         </dt>
-                        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-5">
-                            관리자
-                        </dd>
-                    </div>
-                    <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-6 sm:gap-4 sm:px-6">
-                        <dt class="text-sm font-medium text-gray-500">
-                            category
-                        </dt>
-                        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-5">
-                            공지
-                        </dd>
-                    </div>
-                    <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-6 sm:gap-4 sm:px-6">
-                        <dt class="text-sm font-medium text-gray-500">
-                            views
-                        </dt>
-                        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-5">
-                            14
+                        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-5" id="content_convention">
+                            없음
                         </dd>
                     </div>
                     <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-6 sm:gap-4 sm:px-6">
                         <dt class="text-sm font-medium text-gray-500">
                             Content
                         </dt>
-                        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-5">
-                            1. Chatbot 페이지 들어가기 <br>
-                            2. 채팅방 생성하기 </br>
-                            3. 언어, 컨벤션 입력하기 </br>
-                            4. 컨벤션의 경우 비워둬도 괜찮습니다 </br>
-                            5. 챗봇에게 '사칙연산을 위한 변수 추천해줘'와 같이 물어보기 </br>
+                        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-5" id="content_message">
                         </dd>
                     </div>
                 </dl>
             </div>
         </div>
     </div>
-    <div class="ml-12 w-8/12 flex justify-end">
+    <div class="flex items-center justify-center">
+        <div class="relative mt-2 h-11 w-3/4 min-w-[200px]">
+            <input
+                class="peer h-full w-full rounded-md border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-3 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
+                placeHolder=" " id="input_message" />
+            <label
+                class="before:content[' '] after:content[' '] pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none text-[11px] font-normal leading-tight text-blue-gray-400 transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-blue-gray-200 before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-blue-gray-200 after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[4.1] peer-placeholder-shown:text-blue-gray-500 peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-blue-500 peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:!border-blue-500 peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:!border-blue-500 peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
+                입력하기
+            </label>
+            <button
+                class="ml-1 mt-6 w-28 select-none rounded-lg bg-blue-500 py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-white shadow-md shadow-blue-500/20 transition-all hover:shadow-lg hover:shadow-blue-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+                type="button" data-ripple-light="true" id="button_send">
+                Send
+            </button>
+        </div>
+    </div>
+    <div class="ml-12 w-10/12 flex justify-end">
         <button
             class="ml-1 mt-6 w-28 select-none rounded-lg bg-blue-500 py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-white shadow-md shadow-blue-500/20 transition-all hover:shadow-lg hover:shadow-blue-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
             type="button" data-ripple-light="true">
@@ -93,16 +97,17 @@
         <button
             class="ml-1 mt-6 w-28 select-none rounded-lg bg-blue-500 py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-white shadow-md shadow-blue-500/20 transition-all hover:shadow-lg hover:shadow-blue-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
             type="button" data-ripple-light="true" onclick="location.href='chat_list.html'">
-            To Chatbot
+            To Chat
         </button>
     </div>
-    
+
     <!-- footer -->
     <div id="footer"></div>
     <!-- /footer -->
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.8.2/dist/alpine.min.js" defer="defer"></script>
     <script src="./js/header.js"></script>
     <script src="./js/footer.js"></script>
+    <script type="module" src="./js/chat_detail.js"></script>
 </body>
 
 </html>

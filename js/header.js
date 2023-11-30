@@ -9,12 +9,39 @@ $header.innerHTML = `
             <a href="board_list.html" class="my-2 lg:ml-6">Board</a>
             <a href="chat_list.html" class="my-2 lg:ml-6">Chatbot</a>
             <!-- login/profile -->
-            <a href="login.html" class="ml-4 hidden lg:block">
-                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
-                </svg>
-            </a>
+            <a href="" class="my-2 lg:ml-6" id="button_profile">로그인</a>
         </div>
     </div>
 </div>
-`
+`;
+
+
+function updateLoginStatus(isLoggedIn) {
+    const $button_profile = document.getElementById('button_profile');
+    $button_profile.removeEventListener('click', handleLogin);
+    $button_profile.removeEventListener('click', handleLogout);
+    if (isLoggedIn) {
+            $button_profile.textContent = 'Logout';
+            $button_profile.addEventListener('click', handleLogout);
+        } else {
+            $button_profile.textContent = 'Login';
+            $button_profile.addEventListener('click', handleLogin);
+        }
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+    const isLoggedIn = localStorage.getItem('access_token') !== null;
+    updateLoginStatus(isLoggedIn);
+});
+
+function handleLogin(e) {
+    e.preventDefault();
+    location.href = '/Ormi-Chatbot-FE/login.html';
+}
+
+function handleLogout(e) {
+    e.preventDefault();
+    localStorage.removeItem('access_token');
+    localStorage.removeItem('refresh_token');
+    updateLoginStatus(false);
+}

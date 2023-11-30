@@ -1,8 +1,8 @@
-const $button_login = document.getElementById("button_login");
-const $input_email = document.getElementById("input_email");
-const $input_password = document.getElementById("input_password");
+const $button_login = document.getElementById('button_login');
+const $input_email = document.getElementById('input_email');
+const $input_password = document.getElementById('input_password');
 
-const email_login = async (e) => {
+const emailLogin = async (e) => {
     e.preventDefault()
     const formdata = {
         "email": $input_email.value,
@@ -30,4 +30,4 @@ const email_login = async (e) => {
     })
 };
 
-$button_login.addEventListener('click', email_login);
+$button_login.addEventListener('click', emailLogin);
