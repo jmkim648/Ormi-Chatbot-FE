@@ -8,8 +8,13 @@ const $button_create = document.getElementById('button_create');
 const $input_language = document.getElementById('input_language');
 const $input_convention = document.getElementById('input_convention');
 const decodedToken = decodeJwtToken($access_token);
-const userId = decodedToken.user_id;
+const userId = getUserID(decodedToken);
 
+function getUserID (token) {
+    if (token !== undefined) {
+        return token.user_id;
+    }
+}
 
 const getChatList = async (e) => {
     const url = 'http://127.0.0.1:8000/chat/'
@@ -27,7 +32,7 @@ const getChatList = async (e) => {
             }
         } else if (response.status === 401) {
             await refreshToken();
-            await postChatDetail();
+            await postChatList();
         } else {
             alert("로그인 후 이용해주세요")
         }
@@ -110,7 +115,12 @@ function handleCardClick(id, language, convention) {
 }
 
 document.addEventListener('DOMContentLoaded', function () {
-    getChatList();
+    if (userId === undefined) {
+        alert('로그인 후 이용해주세요');
+        window.location.href = '/Ormi-Chatbot-FE/login.html';
+    } else {
+        getChatList();
+    }
 });
 
 $button_create.addEventListener('click', postChatList);
