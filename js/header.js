@@ -9,7 +9,7 @@ $header.innerHTML = `
             <a href="board_list.html" class="my-2 lg:ml-6">Board</a>
             <a href="chat_list.html" class="my-2 lg:ml-6">Chatbot</a>
             <!-- login/profile -->
-            <a href="" class="my-2 lg:ml-6" id="button_profile">로그인</a>
+            <a href="" class="my-2 lg:ml-6" id="button_profile">Login</a>
         </div>
     </div>
 </div>
